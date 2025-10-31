@@ -1,0 +1,50 @@
+spring:
+  config:
+    activate:
+      on-profile: railway
+
+  # 1. 数据源（必须）
+  datasource:
+    druid:
+      url: ${DATABASE_URL:jdbc:mysql://localhost:3306/602?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+      username: ${DB_USERNAME:root}
+      password: ${DB_PASSWORD:123456}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # 2. Redis（覆盖端口/主机/密码）
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
+    timeout: 60000
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 10
+        min-idle: 0
+        max-wait: -1
+
+  # 3. OSS 密钥（可选，想走环境变量就留，不想走就写死）
+  alioss:
+    endpoint: ${OSS_ENDPOINT:oss-cn-shenzhen.aliyuncs.com}
+    access-key-id: ${OSS_ACCESS_KEY_ID}
+    access-key-secret: ${OSS_ACCESS_KEY_SECRET}
+    bucket-name: ${OSS_BUCKET_NAME}
+
+  # 4. 其它保持与 dev 一致（无变量，直接复制）
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  main:
+    banner-mode: off
+
+# 5. MyBatis-Plus 配置（同 dev，直接复制）
+mybatis-plus:
+  type-aliases-package: com.web.pojo
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 6. 端口（Railway 动态）
+server:
+  port: ${PORT:8084}
