@@ -1,0 +1,139 @@
+/* 兜底（首屏还没打上类名时使用） */
+:root {
+  /* 自定义变量 */
+  --bg-page: #ffffff;
+  --bg-surface: #ffffff;
+  --text-primary: #303133;
+  --text-regular: #606266;
+  --border-color: #dcdfe6;
+  --brand: #0b5c39;
+
+  --menu-bg: linear-gradient(-15deg, #0ba360, #3cba92 100%);
+  --header-bg: #ffffff;
+  --header-text: #333333;
+  --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+
+  /* Element Plus 常用 CSS Vars（亮色兜底） */
+  --el-bg-color: #ffffff;
+  --el-fill-color-blank: #ffffff;
+  --el-text-color-primary: #303133;
+  --el-text-color-regular: #606266;
+  --el-border-color: #dcdfe6;
+  --el-color-primary: #0ba360;
+}
+
+/* ✅ 亮色主题 */
+html.light {
+  --bg-page: #ffffff;
+  --bg-surface: #ffffff;
+  --text-primary: #303133;
+  --text-regular: #606266;
+  --border-color: #dcdfe6;
+  --brand: #0ba360;
+
+  --menu-bg: linear-gradient(-15deg, #0b7e4c, #3cbaa9 100%);
+  --header-bg: #ffffff;
+  --header-text: #333333;
+  --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+
+  /* EP 变量（亮色） */
+  --el-bg-color: #ffffff;
+  --el-fill-color-blank: #ffffff;
+  --el-text-color-primary: #303133;
+  --el-text-color-regular: #606266;
+  --el-border-color: #dcdfe6;
+  --el-color-primary: #0599fc;
+}
+
+/* 🌙 暗色主题 */
+html.dark {
+  --bg-page: #0f172a;         /* 页面背景 */
+  --bg-surface: #111827;      /* 卡片/头部等表面色 */
+  --text-primary: #e5e7eb;
+  --text-regular: #cbd5e1;
+  --border-color: #334155;
+  --brand: #104bb9;
+
+  --menu-bg: linear-gradient(-15deg, #06225f, #063a4e 100%);
+  --header-bg: var(--bg-surface);
+  --header-text: var(--text-primary);
+  --card-shadow: 0 2px 12px rgba(0, 0, 0, .35);
+
+  /* EP 变量（暗色） */
+  --el-bg-color: #0f172a;
+  --el-fill-color-blank: #111827;
+  --el-text-color-primary: #e5e7eb;
+  --el-text-color-regular: #cbd5e1;
+  --el-border-color: #334155;
+  --el-color-primary: #0c4397;
+}
+
+/* 页面背景兜底 */
+body { background: var(--bg-page); }
+
+/* ============ 平滑过渡（通用） ============ */
+/* 注意：把 .el-table 从这里拿掉，单独控制，避免 transition 被覆盖 */
+html, body,
+.aside,
+.el-header.header,
+.el-main,
+.el-card,
+.el-dialog,
+.el-message,
+.el-message-box,
+.el-menu-item,
+.el-sub-menu__title {
+  transition:
+    background-color .3s ease,
+    background-image .3s ease,
+    color .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+}
+
+/* ============ 主题开关颜色变量（只影响 el-switch） ============ */
+:root, html.light {
+  --switch-active:  #374151;  /* 暗色启用时的底色（亮色主题下显示“要切暗色”） */
+  --switch-inactive:#f3f4f6;
+}
+html.dark {
+  --switch-active:  #475569;
+  --switch-inactive:#334155;
+}
+
+/* ============ 统一 Element Plus 表格变量到主题色 ============ */
+:root, html.light {
+  --el-table-bg-color: var(--bg-surface);
+  --el-table-tr-bg-color: var(--bg-surface);
+  --el-table-header-bg-color: var(--bg-surface);
+  --el-table-row-hover-bg-color: color-mix(in srgb, var(--el-color-primary) 8%, transparent);
+  --el-table-border-color: var(--border-color);
+  --el-border-color-lighter: var(--border-color);
+}
+html.dark {
+  --el-table-bg-color: var(--bg-surface);
+  --el-table-tr-bg-color: var(--bg-surface);
+  --el-table-header-bg-color: var(--bg-surface);
+  --el-table-row-hover-bg-color: color-mix(in srgb, var(--el-color-primary) 12%, transparent);
+  --el-table-border-color: var(--border-color);
+  --el-border-color-lighter: var(--border-color);
+}
+
+/* 表格相关节点：单独过渡（不与全局冲突，防止被覆盖） */
+.el-table,
+.el-table *,
+.el-table__inner-wrapper::before,
+.el-table__border-left-patch {
+  transition:
+    background-color .28s ease,
+    border-color .28s ease;
+}
+/* 表格文本过渡缩短，降低“闪烁”感 */
+.el-table .cell { transition: color .18s ease; }
+
+/* 字体抗锯齿（降低文字过渡时的闪烁） */
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
