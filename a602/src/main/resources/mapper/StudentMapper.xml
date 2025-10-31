@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.mapper.StudentMapper">
+    <insert id="add">
+        insert into student (name, gender, graduation_year, contact, life_motto, award_atSchool,work_experience,hobby, say,major,introduction, photo_url)
+            value (#{name}, #{gender}, #{graduationYear}, #{contact}, #{lifeMotto}, #{awardAtschool}, #{workExperience},#{hobby},
+                   #{say},#{major},#{introduction} ,#{photoUrl})
+    </insert>
+    <insert id="addPre" parameterType="com.web.pojo.VO.StudentVO">
+        insert into student_pre (name, gender, graduation_year, contact, life_motto, award_atSchool,major,introduction,hobby,
+                             work_experience, say, photo_url,uuid)
+            value (#{student.name}, #{student.gender}, #{student.graduationYear}, #{student.contact}, #{student.lifeMotto}, #{student.awardAtschool},
+                   #{student.major}, #{student.introduction},#{student.hobby},
+                   #{student.workExperience}
+            , #{student.say}, #{student.photoUrl}, #{uuid})
+    </insert>
+    <update id="update">
+        update student
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="graduationYear != null">graduation_year = #{graduationYear},</if>
+            <if test="contact != null">contact = #{contact},</if>
+            <if test="lifeMotto != null">life_motto = #{lifeMotto},</if>
+            <if test="awardAtschool != null">award_atSchool = #{awardAtschool},</if>
+            <if test="major != null">major = #{major}, </if>
+            <if test="workExperience != null">work_experience = #{workExperience},</if>
+            <if test="hobby != null">hobby = #{hobby},</if>
+            <if test="say != null">say = #{say},</if>
+            <if test="major != null">major = #{major},</if>
+            <if test="introduction != null">introduction = #{introduction},</if>
+            <if test="photoUrl != null">photo_url = #{photoUrl}</if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="update1" parameterType="com.web.pojo.DTO.StudentDTO">
+        update student_pre
+        <set>
+            <if test="student.name != null">name = #{student.name},</if>
+            <if test="student.gender != null">gender = #{student.gender},</if>
+            <if test="student.graduationYear != null">graduation_year = #{student.graduationYear},</if>
+            <if test="student.contact != null">contact = #{student.contact},</if>
+            <if test="student.lifeMotto != null">life_motto = #{student.lifeMotto},</if>
+            <if test="student.awardAtschool != null">award_atSchool = #{student.awardAtschool},</if>
+            <if test="student.major != null">major = #{student.major}, </if>
+            <if test="student.workExperience != null">work_experience = #{student.workExperience},</if>
+            <if test="student.hobby != null">hobby = #{student.hobby},</if>
+            <if test="student.say != null">say = #{student.say},</if>
+            <if test="student.major != null">major = #{student.major},</if>
+            <if test="student.introduction != null">introduction = #{student.introduction},</if>
+            <if test="student.photoUrl != null">photo_url = #{student.photoUrl}</if>
+        </set>
+        where uuid = #{uuid}
+    </update>
+    <delete id="deleteOnePre" parameterType="java.lang.Long">
+        delete from student_pre where id = #{id}
+    </delete>
+
+
+    <!--    <delete id="deleteByIds">-->
+<!--        delete from student where id in-->
+<!--        <foreach collection="ids" open="(" close=")" separator="," item="id">-->
+<!--            #{id}-->
+<!--        </foreach>-->
+<!--    </delete>-->
+
+    <select id="findAllWithPage" resultType="com.web.pojo.DO.Student">
+        select * from student
+    </select>
+    <select id="getPhotoUrl" resultType="java.lang.String" parameterType="com.web.pojo.DO.Student">
+        select photo_url from student where id = #{id}  </select>
+    <select id="selectByName" resultType="com.web.pojo.DO.Student" parameterType="java.lang.String">
+        select * from student where name = #{name}
+    </select>
+    <select id="getById" resultType="com.web.pojo.DO.Student" parameterType="java.lang.Integer">
+        select * from student where id = #{id}
+    </select>
+    <select id="getStudent" resultType="com.web.pojo.VO.SelectStudentVO" parameterType="java.lang.String">
+        select * from student_pre where uuid = #{uuid}
+    </select>
+    <select id="selectPre" resultType="com.web.pojo.DO.Student">
+        select * from student_pre
+    </select>
+    <select id="selectOnePre" resultType="com.web.pojo.DO.Student" parameterType="java.lang.Long">
+        select * from student_pre where id = #{id}
+    </select>
+    <select id="getPrePhotoUrl" resultType="java.lang.String" parameterType="java.lang.Long">
+        select photo_url from student_pre where id = #{id}
+    </select>
+</mapper>

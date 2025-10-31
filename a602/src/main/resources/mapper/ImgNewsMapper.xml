@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mapper.ImgNewsMapper">
+
+    <insert id="add">
+        insert into img_news (news_id, url) VALUE (#{id}, #{url})
+    </insert>
+    <update id="update">
+        update img_news
+        <set>
+            <if test="url != null">url = #{url}</if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from img_news where news_id= #{id}
+    </delete>
+    <delete id="deleteByUrl">
+        delete from img_news where url= #{url}
+    </delete>
+    <select id="selectByNewsId" resultType="java.lang.String" parameterType="java.lang.Integer">
+        select url from img_news where news_id = #{id}
+    </select>
+    <select id="getByNewsId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select id from img_news where news_id = #{id}
+    </select>
+    <select id="getUrl" resultType="java.lang.String" parameterType="java.lang.Integer">
+        select url from img_news where id = #{id}
+    </select>
+</mapper>

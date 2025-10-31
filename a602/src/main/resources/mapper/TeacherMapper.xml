@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.web.mapper.TeacherMapper">
+    <insert id="addTeacher">
+        insert into teacher (name, job, introduction, honor, direction, photo_url, avatar_color, bg_color)
+            VALUE (#{name}, #{job}, #{introduction}, #{honor}, #{direction}, #{photoUrl}, #{avatarColor}, #{bgColor})
+    </insert>
+    <update id="update">
+        update teacher
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="job != null">job = #{job},</if>
+
+            <if test="introduction != null">introduction = #{introduction},</if>
+            <if test="honor != null">honor = #{honor},</if>
+            <if test="direction != null">direction = #{direction},</if>
+            <if test="direction != null">direction = #{direction},</if>
+            <if test="photoUrl != null">photo_url = #{photoUrl}</if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from teacher where id = #{id}
+    </delete>
+
+
+    <!--    <delete id="deleteByIds">-->
+<!--        delete from teacher where id in-->
+<!--        <foreach collection="ids" open="(" close=")" separator="," item="id">-->
+<!--            #{id}-->
+<!--        </foreach>-->
+<!--    </delete>-->
+
+    <select id="findAllWithPage" resultType="com.web.pojo.DO.Teacher">
+        select * from teacher
+    </select>
+    <select id="getPhotoUrl" resultType="java.lang.String" parameterType="java.lang.Long">
+        select photo_url from teacher where id = #{id}
+    </select>
+    <select id="getTeacher" resultType="com.web.pojo.DO.Teacher">
+        select * from teacher
+    </select>
+</mapper>

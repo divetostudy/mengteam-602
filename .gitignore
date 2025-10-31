@@ -1,0 +1,20 @@
+# === Java / Maven ===
+a602/target/
+a602/*.log
+a602/.mvn/wrapper/maven-wrapper.jar
+
+# === Node ===
+admin/node_modules/
+admin/dist/
+admin/*.log
+lab-project-vue-master/node_modules/
+lab-project-vue-master/dist/
+lab-project-vue-master/*.log
+
+# === 系统 ===
+.DS_Store
+Thumbs.db
+
+# === 密钥 / 本地环境 ===
+*.env
+*.env.local

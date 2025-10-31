@@ -1,0 +1,35 @@
+server:
+  port: 8084
+
+
+spring:
+  datasource:
+    druid:
+      username: root
+      password: '123456'
+      url: jdbc:mysql://localhost:3306/602?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+#      username: root
+#      password: '123456'
+#      url: jdbc:mysql://localhost:3306/602?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  alioss:
+    endpoint: oss-cn-shenzhen.aliyuncs.com
+    access-key-id: LTAI5tScK1obkvFWuB4r9GKk
+    access-key-secret:  LBIcgtneB6j12gttSH1JBLykyQp0m8
+    bucket-name: 602website
+
+  main:
+    banner-mode: off
+
+mybatis-plus:
+  type-aliases-package: com.web.pojo
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true

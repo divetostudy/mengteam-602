@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mapper.NewsMapper">
+
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        insert into news (title, descr, category, contect, img, time) VALUE
+        (#{title}, #{descr}, #{category}, #{contect}, #{img}, #{time})
+    </insert>
+    <update id="update" parameterType="com.web.pojo.DO.News">
+        update news
+        <set>
+            <if test="title != null">title = #{title},</if>
+            <if test="descr != null">descr = #{descr},</if>
+            <if test="category != null">category = #{category},</if>
+            <if test="contect != null">contect = #{contect},</if>
+            img = #{img},
+            <if test="time != null">time = #{time}</if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from news where id = #{id}
+    </delete>
+    <select id="selectByTitle" resultType="com.web.pojo.DO.News" parameterType="java.lang.Integer">
+        select * from news where id = #{id}
+    </select>
+    <select id="getUrl" resultType="java.lang.String" parameterType="java.lang.Integer">
+        select img from news where id = #{id}
+    </select>
+</mapper>

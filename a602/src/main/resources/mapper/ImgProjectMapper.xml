@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.mapper.ImgProjectMapper">
+
+    <insert id="add">
+        insert into img_project (project_id, url) VALUE
+        (#{id} , #{url})
+    </insert>
+    <update id="update">
+        update img_project
+        <set>
+            <if test="url != null">url = #{url}</if>
+        </set>
+        where id = #{id}
+    </update>
+    <delete id="delete">
+        delete from img_project where project_id = #{id}
+    </delete>
+    <delete id="deleteByUrl">
+        delete from img_project where url = #{url}
+    </delete>
+    <select id="getId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select id from img_project where project_id = #{id}
+    </select>
+    <select id="getUrl" resultType="java.lang.String">
+        select url from img_project where id = #{id}
+    </select>
+    <select id="selectByProjectId" resultType="java.lang.String">
+        select url from img_project where project_id = #{id}
+    </select>
+</mapper>
