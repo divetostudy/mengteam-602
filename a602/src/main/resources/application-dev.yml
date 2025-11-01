@@ -7,7 +7,7 @@ spring:
     druid:
       username: root
       password: '123456'
-      url: jdbc:mysql://localhost:3306/602?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://sjc1.clusters.zeabur.com:3306/602?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
       driver-class-name: com.mysql.cj.jdbc.Driver
 #      username: root
 #      password: '123456'
@@ -33,3 +33,4 @@ mybatis-plus:
   configuration:
     #开启驼峰命名
     map-underscore-to-camel-case: true
+
