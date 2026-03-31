@@ -149,9 +149,9 @@ onMounted(async () => {
   <!-- 年份测试 -->
   <div class="container">
     <div class="grade" ref="gradeRef">
-      <li 
-      class="year-item" 
-      v-for="year in years" 
+      <li
+      class="year-item"
+      v-for="year in years"
       :key="year"
       :class="{ active: highlightedYear === year }"
       @click="highlightYear(year)"

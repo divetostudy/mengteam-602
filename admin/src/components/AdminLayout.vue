@@ -143,7 +143,6 @@ export default {
   name: 'AdminLayout',
   data() {
     return {
-      role: localStorage.getItem('role') || 'user',
       isCollapsed: false,
       menuWidth: 250,
       railWidth: 67,
@@ -154,6 +153,9 @@ export default {
     };
   },
   computed: {
+    role() {
+      return localStorage.getItem('role') || 'user';
+    },
     asideWidth() {
       return this.isCollapsed ? `${this.railWidth}px` : `${this.menuWidth}px`;
     },

@@ -13,16 +13,13 @@ import * as Icons from '@element-plus/icons-vue'; // 导入 Icons
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import './styles/theme.css';
 
+// 📦 导入API配置（统一管理的地方！）
+import { baseURL } from './api/index.js';
+
 const app = createApp(App);
 Object.keys(Icons).forEach(key => app.component(key, Icons[key]));
 
-// const baseURL = 'http://192.168.0.121:8083';
-// const baseURL = 'http://192.168.0.107:8083';
-// const baseURL = 'http://192.168.113.111:8083';
-// const baseURL = 'http://192.168.203.107:8083';
-const baseURL = 'http://192.168.203.245:8084';
-// const baseURL = 'http://localhost:8084';
-
+// 使用导入的 baseURL
 axios.defaults.baseURL = baseURL;
 
 app.config.globalProperties.$axios = axios;

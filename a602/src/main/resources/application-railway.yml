@@ -6,16 +6,16 @@ spring:
   # 1. 数据源（必须）
   datasource:
     druid:
-      url: ${DATABASE_URL:jdbc:mysql://localhost:3306/602?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
-      username: ${DB_USERNAME:root}
-      password: ${DB_PASSWORD:123456}
+      url: ${DATABASE_URL:jdbc:mysql://localhost:3306/602?useSSL=false&serverTimezone=UTC}
+      username: ${DB_USERNAME:602root}
+      password: ${DB_PASSWORD:yK8H8KpbDSkhCiBN}
       driver-class-name: com.mysql.cj.jdbc.Driver
 
   # 2. Redis（覆盖端口/主机/密码）
   redis:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
-    password: ${REDIS_PASSWORD:}
+    #password: ${REDIS_PASSWORD:123456}
     timeout: 60000
     jedis:
       pool:
@@ -24,12 +24,12 @@ spring:
         min-idle: 0
         max-wait: -1
 
-  # 3. OSS 密钥（可选，想走环境变量就留，不想走就写死）
+  # 3. OSS 密钥（使用dev配置的实际值）
   alioss:
-    endpoint: ${OSS_ENDPOINT:oss-cn-shenzhen.aliyuncs.com}
-    access-key-id: ${OSS_ACCESS_KEY_ID}
-    access-key-secret: ${OSS_ACCESS_KEY_SECRET}
-    bucket-name: ${OSS_BUCKET_NAME}
+    endpoint: oss-cn-shenzhen.aliyuncs.com
+    access-key-id: LTAI5tScK1obkvFWuB4r9GKk
+    access-key-secret: LBIcgtneB6j12gttSH1JBLykyQp0m8
+    bucket-name: 602website
 
   # 4. 其它保持与 dev 一致（无变量，直接复制）
   mvc:

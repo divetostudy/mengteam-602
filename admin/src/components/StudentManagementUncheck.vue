@@ -137,7 +137,6 @@ export default {
   data() {
     return {
       activePath: this.$route.path,
-      role: localStorage.getItem("role") || "user", // 获取当前用户的角色
       students: [],
       showForm: false,
       formTitle: '',
@@ -169,13 +168,17 @@ export default {
     };
   },
   computed: {
+    // 实时获取用户角色
+    role() {
+      return localStorage.getItem("role") || "user";
+    },
     // 姓名搜索过滤
     filteredStudents() {
       const searchLower = this.search.toLowerCase();
       // 确保 students 是一个数组
       if (Array.isArray(this.students)) {
-        return this.students.filter(student => 
-          student.name.toLowerCase().includes(searchLower) || 
+        return this.students.filter(student =>
+          student.name.toLowerCase().includes(searchLower) ||
           this.getFirstLetter(student.name).includes(searchLower)
         );
       }
