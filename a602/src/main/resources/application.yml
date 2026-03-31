@@ -5,14 +5,14 @@ server:
 spring:
   destroy-method: close
   profiles:
-    active: railway
+    active: dev
 
   servlet:
     multipart:
       resolve-lazily: true
   redis:
     port: 6379
-    host: localhost
+    host: sjc1.clusters.zeabur.com
     database: 0
     jedis:
       pool:
@@ -35,6 +35,7 @@ a602:
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
+
 
 
 #究极无敌史山代码
